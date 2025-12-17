@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use CodeIgniter\Model;
+
+class KegiatanMitraModel extends Model
+{
+    protected $table = 'kegiatan_mitra';
+    protected $allowedFields = [
+        'mitra_id',
+        'survei_id',
+        'kegiatan',
+        'bulan_kegiatan',
+        'bulan_pembayaran_honor',
+        'bulan_pembayaran_pulsa',
+        'honor',
+        'pulsa'
+    ];
+}
