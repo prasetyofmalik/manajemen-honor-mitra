@@ -49,7 +49,7 @@ class KegiatanMitraController extends BaseController
         $surveiModel = new SurveiModel();
 
         return view('kegiatan_mitra/edit', [
-            'data' => $model->find($id),
+            'kegiatan_mitra' => $model->find($id),
             'mitra' => $mitraModel->findAll(),
             'survei' => $surveiModel->findAll()
         ]);

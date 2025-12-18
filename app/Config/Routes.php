@@ -20,6 +20,7 @@ $routes->post('/survei/store', 'SurveiController::store');
 $routes->get('/survei/edit/(:num)', 'SurveiController::edit/$1');
 $routes->post('/survei/update/(:num)', 'SurveiController::update/$1');
 $routes->get('/survei/delete/(:num)', 'SurveiController::delete/$1');
+$routes->get('/survei/kegiatan/(:num)', 'SurveiController::getKegiatanBySurvei/$1');
 
 $routes->get('/kegiatan-mitra', 'KegiatanMitraController::index');
 $routes->get('/kegiatan-mitra/create', 'KegiatanMitraController::create');

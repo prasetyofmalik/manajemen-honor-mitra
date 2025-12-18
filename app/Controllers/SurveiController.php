@@ -59,4 +59,16 @@ class SurveiController extends BaseController
 
         return redirect()->to('/survei')->with('success', 'Data survei berhasil dihapus');
     }
+
+    public function getKegiatanBySurvei($id)
+    {
+        $surveiModel = new SurveiModel();
+
+        $survei = $surveiModel
+            ->select('kegiatan')
+            ->where('id', $id)
+            ->first();
+
+        return $this->response->setJSON($survei);
+    }
 }
