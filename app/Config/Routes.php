@@ -6,9 +6,6 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'DashboardController::index');
-// $routes->resource('mitra');
-// $routes->resource('survei');
-// $routes->resource('kegiatan-mitra');
 
 $routes->get('/mitra', 'MitraController::index');
 $routes->get('/mitra/create', 'MitraController::create');
