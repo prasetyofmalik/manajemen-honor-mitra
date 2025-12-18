@@ -24,3 +24,10 @@ $routes->get('/survei/edit/(:num)', 'SurveiController::edit/$1');
 $routes->post('/survei/update/(:num)', 'SurveiController::update/$1');
 $routes->get('/survei/delete/(:num)', 'SurveiController::delete/$1');
 
+$routes->get('/kegiatan-mitra', 'KegiatanMitraController::index');
+$routes->get('/kegiatan-mitra/create', 'KegiatanMitraController::create');
+$routes->post('/kegiatan-mitra/store', 'KegiatanMitraController::store');
+$routes->get('/kegiatan-mitra/edit/(:num)', 'KegiatanMitraController::edit/$1');
+$routes->post('/kegiatan-mitra/update/(:num)', 'KegiatanMitraController::update/$1');
+$routes->get('/kegiatan-mitra/delete/(:num)', 'KegiatanMitraController::delete/$1');
+
