@@ -6,15 +6,17 @@ use CodeIgniter\Model;
 
 class KegiatanMitraModel extends Model
 {
-    protected $table = 'kegiatan_mitra';
-    protected $allowedFields = [
+    protected $table            = 'kegiatan_mitra';
+    protected $primaryKey       = 'id';
+
+    protected $allowedFields    = [
         'mitra_id',
-        'survei_id',
-        'kegiatan',
+        'kegiatan_id',
         'bulan_kegiatan',
         'bulan_pembayaran_honor',
         'bulan_pembayaran_pulsa',
         'honor',
         'pulsa'
     ];
+    protected $useTimestamps    = true;
 }

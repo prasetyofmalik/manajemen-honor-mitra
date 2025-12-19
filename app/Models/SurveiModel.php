@@ -6,15 +6,11 @@ use CodeIgniter\Model;
 
 class SurveiModel extends Model
 {
-    protected $table = 'survei';
-    protected $allowedFields = [
+    protected $table            = 'survei';
+    protected $primaryKey       = 'id';
+    protected $allowedFields    = [
         'kode_survei',
         'nama_survei',
-        'kegiatan',
-        'tanggal_mulai',
-        'tanggal_selesai',
-        'satuan',
-        'harga_satuan',
-        'kode_beban_anggaran'
     ];
+    protected $useTimestamps    = true;
 }
