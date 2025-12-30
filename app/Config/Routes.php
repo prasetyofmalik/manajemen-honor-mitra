@@ -23,7 +23,10 @@ $routes->get('/survei/delete/(:num)', 'SurveiController::delete/$1');
 
 $routes->get('/kegiatan/create', 'KegiatanController::create');
 $routes->post('/kegiatan/store', 'KegiatanController::store');
+$routes->get('/kegiatan/by-survei/(:num)', 'KegiatanController::bySurvei/$1');
 $routes->get('/kegiatan/edit/(:num)', 'KegiatanController::edit/$1');
+$routes->post('/kegiatan/update/(:num)', 'KegiatanController::update/$1');
+$routes->get('/kegiatan/delete/(:num)', 'KegiatanController::delete/$1');
 
 $routes->get('/kegiatan-mitra', 'KegiatanMitraController::index');
 $routes->get('/kegiatan-mitra/create', 'KegiatanMitraController::create');

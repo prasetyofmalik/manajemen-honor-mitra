@@ -17,16 +17,16 @@
                 <table class="table table-bordered table-striped table-hover mb-0">
                     <thead class="table-light text-center align-middle">
                         <tr>
-                            <th>No</th>
+                            <th style="width: 50px;">No</th>
                             <th>Nama Mitra</th>
                             <th>Kode Survei</th>
-                            <th>Kegiatan</th>
+                            <th>Nama Kegiatan</th>
                             <th>Bulan Kegiatan</th>
                             <th>Bulan Bayar Honor</th>
                             <th>Bulan Bayar Pulsa</th>
                             <th>Honor</th>
                             <th>Pulsa</th>
-                            <th>Aksi</th>
+                            <th style="width: 120px;">Aksi</th>
                         </tr>
                     </thead>
 
@@ -44,8 +44,12 @@
                             <tr>
                                 <td class="text-center"><?= $no++ ?></td>
                                 <td><?= esc($k['nama_lengkap']) ?></td>
-                                <td class="text-center"><?= esc($k['kode_survei']) ?></td>
-                                <td><?= esc($k['kegiatan']) ?></td>
+                                <td class="text-center">
+                                    <span class="badge bg-info">
+                                        <?= esc($k['kode_survei']) ?>
+                                    </span>
+                                </td>
+                                <td><?= esc($k['nama_kegiatan']) ?></td>
                                 <td class="text-center"><?= esc($k['bulan_kegiatan']) ?></td>
                                 <td class="text-center"><?= esc($k['bulan_pembayaran_honor']) ?></td>
                                 <td class="text-center"><?= esc($k['bulan_pembayaran_pulsa']) ?></td>

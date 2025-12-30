@@ -19,6 +19,18 @@
             <?= $this->include('partials/navbar') ?>
 
             <main class="container-fluid mt-4">
+                <?php if (session()->getFlashdata('success')) : ?>
+                    <div class="container-fluid">
+                        <div class="alert alert-success"><?= session()->getFlashdata('success') ?></div>
+                    </div>
+                <?php endif; ?>
+
+                <?php if (session()->getFlashdata('error')) : ?>
+                    <div class="container-fluid">
+                        <div class="alert alert-danger"><?= session()->getFlashdata('error') ?></div>
+                    </div>
+                <?php endif; ?>
+
                 <?= $this->renderSection('content') ?>
             </main>
         </div>

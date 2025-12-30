@@ -18,6 +18,7 @@
 
                 <div class="row g-3">
 
+                    <!-- Mitra -->
                     <div class="col-md-6">
                         <label class="form-label">Mitra</label>
                         <select name="mitra_id" class="form-select" required>
@@ -30,6 +31,7 @@
                         </select>
                     </div>
 
+                    <!-- Survei -->
                     <div class="col-md-6">
                         <label class="form-label">Survei</label>
                         <select name="survei_id" id="surveiSelect" class="form-select" required>
@@ -42,28 +44,28 @@
                         </select>
                     </div>
 
+                    <!-- Kegiatan -->
                     <div class="col-md-12">
-                        <label class="form-label">Kegiatan Mitra</label>
-                        <select name="kegiatan" id="kegiatanSelect"
+                        <label class="form-label">Kegiatan</label>
+                        <select name="kegiatan_id" id="kegiatanSelect"
                             class="form-select"
                             disabled
                             required>
-                            <option value="">-- Pilih Survei terlebih dahulu --</option>
+                            <option value="">-- Pilih survei terlebih dahulu --</option>
                         </select>
                     </div>
 
+                    <!-- Bulan -->
                     <div class="col-md-4">
                         <label class="form-label">Bulan Kegiatan</label>
                         <input type="month" name="bulan_kegiatan"
-                            class="form-control"
-                            required>
+                            class="form-control" required>
                     </div>
 
                     <div class="col-md-4">
                         <label class="form-label">Bulan Pembayaran Honor</label>
                         <input type="month" name="bulan_pembayaran_honor"
-                            class="form-control"
-                            required>
+                            class="form-control" required>
                     </div>
 
                     <div class="col-md-4">
@@ -72,12 +74,13 @@
                             class="form-control">
                     </div>
 
+                    <!-- Honor -->
                     <div class="col-md-6">
                         <label class="form-label">Honor (Rp)</label>
                         <input type="number" name="honor"
                             class="form-control"
-                            placeholder="0"
                             min="0"
+                            placeholder="0"
                             required>
                     </div>
 
@@ -85,8 +88,8 @@
                         <label class="form-label">Pulsa (Rp)</label>
                         <input type="number" name="pulsa"
                             class="form-control"
-                            placeholder="0"
-                            min="0">
+                            min="0"
+                            placeholder="0">
                     </div>
 
                 </div>
@@ -106,5 +109,51 @@
     </div>
 
 </div>
+
+<!-- SCRIPT FILTER KEGIATAN BERDASARKAN SURVEI -->
+<script>
+    document.getElementById('surveiSelect').addEventListener('change', function() {
+        const surveiId = this.value;
+        const kegiatanSelect = document.getElementById('kegiatanSelect');
+
+        kegiatanSelect.innerHTML = '';
+        kegiatanSelect.disabled = true;
+
+        if (!surveiId) {
+            kegiatanSelect.innerHTML = '<option value="">-- Pilih survei terlebih dahulu --</option>';
+            return;
+        }
+
+        kegiatanSelect.innerHTML = '<option value="">Memuat kegiatan...</option>';
+
+        fetch(`/kegiatan/by-survei/${surveiId}`)
+            .then(response => response.json())
+            .then(data => {
+                kegiatanSelect.innerHTML = '';
+
+                if (data.length === 0) {
+                    kegiatanSelect.innerHTML =
+                        '<option value="">Belum ada kegiatan untuk survei ini</option>';
+                    return;
+                }
+
+                kegiatanSelect.innerHTML =
+                    '<option value="">-- Pilih Kegiatan --</option>';
+
+                data.forEach(kegiatan => {
+                    const option = document.createElement('option');
+                    option.value = kegiatan.id;
+                    option.textContent = kegiatan.nama_kegiatan;
+                    kegiatanSelect.appendChild(option);
+                });
+
+                kegiatanSelect.disabled = false;
+            })
+            .catch(() => {
+                kegiatanSelect.innerHTML =
+                    '<option value="">Gagal memuat kegiatan</option>';
+            });
+    });
+</script>
 
 <?= $this->endSection() ?>

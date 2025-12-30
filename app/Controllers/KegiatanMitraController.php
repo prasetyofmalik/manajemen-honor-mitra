@@ -28,7 +28,7 @@ class KegiatanMitraController extends BaseController
                 kegiatan_mitra.*,
                 mitra.nama_lengkap,
                 survei.kode_survei,
-                kegiatan.kegiatan
+                kegiatan.nama_kegiatan
             ')
             ->join('mitra', 'mitra.id = kegiatan_mitra.mitra_id')
             ->join('kegiatan', 'kegiatan.id = kegiatan_mitra.kegiatan_id')
@@ -84,7 +84,7 @@ class KegiatanMitraController extends BaseController
             'kegiatan'       => $this->kegiatanModel
                 ->where('survei_id', $kegiatan['survei_id'])
                 ->findAll(),
-            'selectedSurvei' => $kegiatan['survei_id']
+            'survei_id'      => $kegiatan['survei_id']
         ]);
     }
 

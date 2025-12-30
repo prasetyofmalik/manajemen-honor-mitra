@@ -90,6 +90,9 @@
                                                     <th width="50">No</th>
                                                     <th>Nama Kegiatan</th>
                                                     <th>Tanggal</th>
+                                                    <th>Satuan</th>
+                                                    <th>Harga Satuan</th>
+                                                    <th>Kode Beban Anggaran</th>
                                                     <th width="120">Aksi</th>
                                                 </tr>
                                             </thead>
@@ -100,9 +103,12 @@
                                                         <td><?= esc($k['nama_kegiatan']) ?></td>
                                                         <td class="text-center">
                                                             <?= esc($k['tanggal_mulai']) ?>
-                                                            –
+                                                            -
                                                             <?= esc($k['tanggal_selesai']) ?>
                                                         </td>
+                                                        <td><?= esc($k['satuan']) ?></td>
+                                                        <td><?= esc($k['harga_satuan']) ?></td>
+                                                        <td><?= esc($k['kode_beban_anggaran']) ?></td>
                                                         <td class="text-center">
                                                             <a href="/kegiatan/edit/<?= $k['id'] ?>"
                                                                 class="btn btn-sm btn-warning">

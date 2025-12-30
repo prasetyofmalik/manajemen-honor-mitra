@@ -18,5 +18,5 @@ class KegiatanMitraModel extends Model
         'honor',
         'pulsa'
     ];
-    protected $useTimestamps    = true;
+    protected $useTimestamps    = false;
 }

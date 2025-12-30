@@ -12,5 +12,5 @@ class SurveiModel extends Model
         'kode_survei',
         'nama_survei',
     ];
-    protected $useTimestamps    = true;
+    protected $useTimestamps    = false;
 }
