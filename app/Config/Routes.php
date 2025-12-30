@@ -5,7 +5,9 @@ use CodeIgniter\Router\RouteCollection;
 /**
  * @var RouteCollection $routes
  */
-$routes->get('/', 'DashboardController::index');
+$routes->addRedirect('/', '/dashboard');
+
+$routes->get('/dashboard', 'DashboardController::index');
 
 $routes->get('/mitra', 'MitraController::index');
 $routes->get('/mitra/create', 'MitraController::create');
