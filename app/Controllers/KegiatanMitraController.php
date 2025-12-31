@@ -53,6 +53,7 @@ class KegiatanMitraController extends BaseController
     {
         $data = [
             'mitra_id'                  => $this->request->getPost('mitra_id'),
+            'jabatan'                   => $this->request->getPost('jabatan'),
             'kegiatan_id'               => $this->request->getPost('kegiatan_id'),
             'bulan_kegiatan'            => $this->request->getPost('bulan_kegiatan'),
             'bulan_pembayaran_honor'    => $this->request->getPost('bulan_pembayaran_honor'),
@@ -92,6 +93,7 @@ class KegiatanMitraController extends BaseController
     {
         $data = [
             'mitra_id'                  => $this->request->getPost('mitra_id'),
+            'jabatan'                   => $this->request->getPost('jabatan'),
             'kegiatan_id'               => $this->request->getPost('kegiatan_id'),
             'bulan_kegiatan'            => $this->request->getPost('bulan_kegiatan'),
             'bulan_pembayaran_honor'    => $this->request->getPost('bulan_pembayaran_honor'),

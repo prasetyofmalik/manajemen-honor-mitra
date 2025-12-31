@@ -22,7 +22,6 @@ class DashboardController extends BaseController
 
     public function index()
     {
-        // default filter bulan (boleh kosong)
         $filter = [
             'bulan_kegiatan'          => $this->request->getGet('bulan_kegiatan'),
             'bulan_pembayaran_honor'  => $this->request->getGet('bulan_pembayaran_honor'),
@@ -32,86 +31,94 @@ class DashboardController extends BaseController
         $pivotData = $this->buildPivot($filter);
 
         return view('dashboard/index', [
-            'filter'    => $filter,
-            'mitra'     => $pivotData['mitra'],
-            'survei'    => $pivotData['survei'],
-            'matrix'    => $pivotData['matrix'],
-            'rowTotal'  => $pivotData['rowTotal'],
-            'colTotal'  => $pivotData['colTotal'],
-            'grandTotal' => $pivotData['grandTotal'],
+            'filter'      => $filter,
+            'mitra'       => $pivotData['mitra'],
+            'survei'      => $pivotData['survei'],
+            'matrix'      => $pivotData['matrix'],
+            'rowTotal'    => $pivotData['rowTotal'],
+            'colTotal'    => $pivotData['colTotal'],
+            'colHonorTotal' => $pivotData['colHonorTotal'],
+            'colPulsaTotal' => $pivotData['colPulsaTotal'],
+            'grandTotal'  => $pivotData['grandTotal'],
         ]);
     }
 
-    /**
-     * Core logic pivot table
-     */
     private function buildPivot(array $filter): array
     {
         $builder = $this->kegiatanMitraModel
             ->select('
-                kegiatan_mitra.mitra_id,
-                mitra.nama_lengkap,
-                kegiatan.survei_id,
-                survei.kode_survei,
-                SUM(kegiatan_mitra.honor) AS total_honor
-            ')
-            ->join('mitra', 'mitra.id = kegiatan_mitra.mitra_id')
-            ->join('kegiatan', 'kegiatan.id = kegiatan_mitra.kegiatan_id')
-            ->join('survei', 'survei.id = kegiatan.survei_id')
-            ->groupBy('kegiatan_mitra.mitra_id, kegiatan.survei_id');
+            kegiatan_mitra.mitra_id,
+            kegiatan_mitra.honor,
+            kegiatan_mitra.pulsa,
+            kegiatan.survei_id,
+            kegiatan.nama_kegiatan
+        ')
+            ->join('kegiatan', 'kegiatan.id = kegiatan_mitra.kegiatan_id');
 
-        // filter dinamis
+        // Apply filters
         if (!empty($filter['bulan_kegiatan'])) {
             $builder->where('kegiatan_mitra.bulan_kegiatan', $filter['bulan_kegiatan']);
         }
-
         if (!empty($filter['bulan_pembayaran_honor'])) {
             $builder->where('kegiatan_mitra.bulan_pembayaran_honor', $filter['bulan_pembayaran_honor']);
         }
-
         if (!empty($filter['bulan_pembayaran_pulsa'])) {
             $builder->where('kegiatan_mitra.bulan_pembayaran_pulsa', $filter['bulan_pembayaran_pulsa']);
         }
 
         $rows = $builder->findAll();
-
-        // master data
         $mitra  = $this->mitraModel->orderBy('nama_lengkap')->findAll();
         $survei = $this->surveiModel->orderBy('kode_survei')->findAll();
 
-        // inisialisasi matrix
+        // LOGIC: If both are filtered OR both are empty, show both.
+        // If only one is selected, show only that one.
+        $hasHonorFilter = !empty($filter['bulan_pembayaran_honor']);
+        $hasPulsaFilter = !empty($filter['bulan_pembayaran_pulsa']);
+
+        $showHonor = true;
+        $showPulsa = true;
+
+        if ($hasHonorFilter && !$hasPulsaFilter) {
+            $showPulsa = false;
+        } elseif (!$hasHonorFilter && $hasPulsaFilter) {
+            $showHonor = false;
+        }
+
         $matrix = [];
         $rowTotal = [];
         $colTotal = [];
+        $colHonorTotal = [];
+        $colPulsaTotal = [];
         $grandTotal = 0;
 
-        foreach ($mitra as $m) {
-            foreach ($survei as $s) {
-                $matrix[$m['id']][$s['id']] = 0;
-            }
-            $rowTotal[$m['id']] = 0;
-        }
-
+        foreach ($mitra as $m) $rowTotal[$m['id']] = 0;
         foreach ($survei as $s) {
             $colTotal[$s['id']] = 0;
+            $colHonorTotal[$s['id']] = 0;
+            $colPulsaTotal[$s['id']] = 0;
         }
 
-        // isi pivot
         foreach ($rows as $r) {
-            $matrix[$r['mitra_id']][$r['survei_id']] = (int) $r['total_honor'];
+            $mId = $r['mitra_id'];
+            $sId = $r['survei_id'];
 
-            $rowTotal[$r['mitra_id']] += $r['total_honor'];
-            $colTotal[$r['survei_id']] += $r['total_honor'];
-            $grandTotal += $r['total_honor'];
+            $hVal = $showHonor ? (int)$r['honor'] : 0;
+            $pVal = $showPulsa ? (int)$r['pulsa'] : 0;
+            $combined = $hVal + $pVal;
+
+            $matrix[$mId][$sId][] = [
+                'nama'  => $r['nama_kegiatan'],
+                'honor' => $hVal,
+                'pulsa' => $pVal
+            ];
+
+            $rowTotal[$mId] += $combined;
+            $colTotal[$sId] += $combined;
+            $colHonorTotal[$sId] += $hVal;
+            $colPulsaTotal[$sId] += $pVal;
+            $grandTotal += $combined;
         }
 
-        return compact(
-            'mitra',
-            'survei',
-            'matrix',
-            'rowTotal',
-            'colTotal',
-            'grandTotal'
-        );
+        return compact('mitra', 'survei', 'matrix', 'rowTotal', 'colTotal', 'colHonorTotal', 'colPulsaTotal', 'grandTotal');
     }
 }

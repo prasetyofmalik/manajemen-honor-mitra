@@ -1,109 +1,211 @@
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
-<div class="container-fluid">
-    <h4 class="mb-4">Edit Mitra</h4>
+<div class="container-fluid py-4">
 
-    <form action="/mitra/update/<?= $mitra['id'] ?>" method="post" class="card shadow-sm">
-        <?= csrf_field() ?>
-
-        <div class="card-body">
-            <div class="row">
-
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">SOBAT ID</label>
-                    <input type="text" name="sobat_id" class="form-control"
-                        value="<?= esc($mitra['sobat_id']) ?>" required>
-                </div>
-
-                <div class="col-md-8 mb-3">
-                    <label class="form-label">Nama Lengkap</label>
-                    <input type="text" name="nama_lengkap" class="form-control"
-                        value="<?= esc($mitra['nama_lengkap']) ?>" required>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Posisi</label>
-                    <input type="text" name="posisi" class="form-control"
-                        value="<?= esc($mitra['posisi']) ?>" required>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Jenis Kelamin</label>
-                    <select name="jk" class="form-select" required>
-                        <option value="">-- Pilih --</option>
-                        <option value="Lk" <?= $mitra['jk'] == 'Lk' ? 'selected' : '' ?>>Laki-laki</option>
-                        <option value="Pr" <?= $mitra['jk'] == 'Pr' ? 'selected' : '' ?>>Perempuan</option>
-                    </select>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Pendidikan</label>
-                    <input type="text" name="pendidikan" class="form-control"
-                        value="<?= esc($mitra['pendidikan']) ?>" required>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Pekerjaan</label>
-                    <input type="text" name="pekerjaan" class="form-control"
-                        value="<?= esc($mitra['pekerjaan']) ?>" required>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">No Telepon</label>
-                    <input type="text" name="no_telp" class="form-control"
-                        value="<?= esc($mitra['no_telp']) ?>" required>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control"
-                        value="<?= esc($mitra['email']) ?>" required>
-                </div>
-
-                <div class="col-md-6 mb-3">
-                    <label class="form-label">NIK</label>
-                    <input type="text" name="nik" class="form-control"
-                        value="<?= esc($mitra['nik']) ?>" required>
-                </div>
-
-                <div class="col-md-12 mb-3">
-                    <label class="form-label">Alamat</label>
-                    <textarea name="alamat" rows="3" class="form-control"><?= esc($mitra['alamat']) ?></textarea>
-                </div>
-
-                <hr class="my-3">
-
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Nama Bank</label>
-                    <input type="text" name="nama_bank" class="form-control"
-                        value="<?= esc($mitra['nama_bank']) ?>">
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Nomor Rekening</label>
-                    <input type="text" name="nomor_rekening" class="form-control"
-                        value="<?= esc($mitra['nomor_rekening']) ?>">
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">Atas Nama</label>
-                    <input type="text" name="rekening_nama" class="form-control"
-                        value="<?= esc($mitra['rekening_nama']) ?>">
-                </div>
-
-            </div>
+    <div class="row align-items-center mb-4">
+        <div class="col">
+            <h4 class="fw-bold mb-0 text-dark">Edit Mitra</h4>
+            <p class="text-muted small mb-0">Perbarui informasi profil dan detail rekening mitra.</p>
         </div>
-
-        <div class="card-footer text-end">
-            <a href="/mitra" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i> Kembali
+        <div class="col-auto">
+            <a href="/mitra" class="btn btn-outline-secondary px-4 border-0">
+                <i class="bi bi-arrow-left me-1"></i> Kembali ke Daftar
             </a>
-            <button type="submit" class="btn btn-warning">
-                <i class="bi bi-pencil-square"></i> Update
-            </button>
         </div>
-    </form>
+    </div>
+
+    <div class="row justify-content-start">
+        <div class="col-lg-10">
+            <form action="/mitra/update/<?= $mitra['id'] ?>" method="post" class="card border-0 shadow-sm">
+                <?= csrf_field() ?>
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-primary-subtle text-primary rounded-circle p-2 me-3">
+                            <i class="bi bi-person-badge fs-5"></i>
+                        </div>
+                        <h6 class="fw-bold mb-0">Informasi Pribadi & Pekerjaan</h6>
+                    </div>
+
+                    <div class="row g-4 mb-5">
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">SOBAT ID <span class="text-danger">*</span></label>
+                            <input type="text" name="sobat_id" class="form-control bg-light border-0 py-2" value="<?= esc($mitra['sobat_id']) ?>" required>
+                        </div>
+
+                        <div class="col-md-8">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Nama Lengkap <span class="text-danger">*</span></label>
+                            <input type="text" name="nama_lengkap" class="form-control bg-light border-0 py-2" value="<?= esc($mitra['nama_lengkap']) ?>" required>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Posisi <span class="text-danger">*</span></label>
+                            <select name="posisi" class="form-select bg-light border-0 py-2" required>
+                                <?php $posisi_opts = ['Mitra Pendataan', 'Mitra Pengolahan', 'Mitra (Pendataan dan Pengolahan)']; ?>
+                                <?php foreach ($posisi_opts as $opt): ?>
+                                    <option value="<?= $opt ?>" <?= $mitra['posisi'] == $opt ? 'selected' : '' ?>><?= $opt ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Jenis Kelamin <span class="text-danger">*</span></label>
+                            <select name="jk" class="form-select bg-light border-0 py-2" required>
+                                <option value="Lk" <?= $mitra['jk'] == 'Lk' ? 'selected' : '' ?>>Laki-laki</option>
+                                <option value="Pr" <?= $mitra['jk'] == 'Pr' ? 'selected' : '' ?>>Perempuan</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Pendidikan <span class="text-danger">*</span></label>
+                            <select name="pendidikan" class="form-select bg-light border-0 py-2" required>
+                                <?php $edu_opts = ['SMA' => 'Tamat SMA/Sederajat', 'D1/D2/D3' => 'Tamat D1/D2/D3', 'D4/S1' => 'Tamat D4/S1', 'S2' => 'Tamat S2']; ?>
+                                <?php foreach ($edu_opts as $val => $label): ?>
+                                    <option value="<?= $val ?>" <?= $mitra['pendidikan'] == $val ? 'selected' : '' ?>><?= $label ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Pekerjaan <span class="text-danger">*</span></label>
+                            <select name="pekerjaan" class="form-select bg-light border-0 py-2" required>
+                                <?php
+                                $job_opts = [
+                                    "(1) Aparat Desa / Kelurahan" => "Aparat Desa / Kelurahan",
+                                    "(2) Kader PKK / Karang Taruna / Kader Lainnya" => "Kader PKK / Karang Taruna / Kader Lainnya",
+                                    "(3) Pegawai / Guru Honorer" => "Pegawai / Guru Honorer",
+                                    "(4) Mengurus Rumah Tangga" => "Mengurus Rumah Tangga",
+                                    "(5) Wiraswasta" => "Wiraswasta",
+                                    "(6) Pelajar / Mahasiswa" => "Pelajar / Mahasiswa",
+                                    "(7) Lainnya" => "Lainnya"
+                                ];
+                                foreach ($job_opts as $val => $label): ?>
+                                    <option value="<?= $val ?>" <?= $mitra['pekerjaan'] == $val ? 'selected' : '' ?>><?= $label ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">NIK <span class="text-danger">*</span></label>
+                            <input type="text" name="nik" class="form-control bg-light border-0 py-2" value="<?= esc($mitra['nik']) ?>" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">No Telepon <span class="text-danger">*</span></label>
+                            <input type="text" id="phone_input" name="no_telp" class="form-control bg-light border-0 py-2" value="<?= esc($mitra['no_telp']) ?>" maxlength="18" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Email <span class="text-danger">*</span></label>
+                            <input type="email" name="email" class="form-control bg-light border-0 py-2" value="<?= esc($mitra['email']) ?>" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Alamat Tinggal</label>
+                            <textarea name="alamat" rows="2" class="form-control bg-light border-0 py-2"><?= esc($mitra['alamat']) ?></textarea>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center mb-4">
+                        <div class="bg-warning-subtle text-warning rounded-circle p-2 me-3">
+                            <i class="bi bi-credit-card fs-5"></i>
+                        </div>
+                        <h6 class="fw-bold mb-0">Informasi Rekening Bank</h6>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Nama Bank</label>
+                            <select name="nama_bank" class="form-select bg-light border-0 py-2">
+                                <option value="">-- Pilih Bank --</option>
+                                <?php
+                                $bank_opts = [
+                                    "(002) BANK BRI" => "BANK BRI",
+                                    "(008) BANK MANDIRI" => "BANK MANDIRI",
+                                    "(009) BANK BNI" => "BANK BNI",
+                                    "(014) BANK BCA" => "BANK BCA",
+                                    "(119) BANK RIAU" => "BANK RIAU",
+                                    "(451) BANK SYARIAH INDONESIA" => "BANK SYARIAH INDONESIA",
+                                    "(535) Sea Bank" => "Sea Bank"
+                                ];
+                                foreach ($bank_opts as $val => $label): ?>
+                                    <option value="<?= $val ?>" <?= $mitra['nama_bank'] == $val ? 'selected' : '' ?>><?= $label ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Nomor Rekening</label>
+                            <input type="text" name="nomor_rekening" class="form-control bg-light border-0 py-2" value="<?= esc($mitra['nomor_rekening']) ?>">
+                        </div>
+
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">Atas Nama</label>
+                            <input type="text" name="rekening_nama" class="form-control bg-light border-0 py-2" value="<?= esc($mitra['rekening_nama']) ?>">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-white border-top-0 p-4 pt-0 text-end">
+                    <hr class="text-light mb-4">
+                    <button type="submit" class="btn btn-warning px-5 shadow-sm fw-medium">
+                        <i class="bi bi-check-circle me-2"></i> Perbarui Data Mitra
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
+
+<script>
+    const phoneInput = document.getElementById('phone_input');
+
+    const formatPhone = (val) => {
+        let x = val.replace(/\D/g, '');
+        if (x.startsWith('62')) {} else if (x.startsWith('0')) {
+            x = '62' + x.substring(1);
+        } else {
+            x = '62' + x;
+        }
+
+        let formatted = '+62 ';
+        if (x.length > 2) {
+            formatted += x.substring(2, 5);
+        }
+        if (x.length > 5) {
+            formatted += '-' + x.substring(5, 9);
+        }
+        if (x.length > 9) {
+            formatted += '-' + x.substring(9, 14);
+        }
+        return formatted;
+    };
+
+    // Initial format on load
+    window.addEventListener('load', () => {
+        if (phoneInput.value) phoneInput.value = formatPhone(phoneInput.value);
+    });
+
+    phoneInput.addEventListener('input', function(e) {
+        e.target.value = formatPhone(e.target.value);
+    });
+
+    phoneInput.addEventListener('keydown', function(e) {
+        if (e.target.selectionStart <= 4 && (e.keyCode === 8 || e.keyCode === 46)) {
+            e.preventDefault();
+        }
+    });
+</script>
+
+<style>
+    .form-control:focus,
+    .form-select:focus {
+        background-color: #fff !important;
+        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.15);
+        border: 1px solid #ffc107;
+    }
+</style>
 
 <?= $this->endSection() ?>

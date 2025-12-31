@@ -11,6 +11,7 @@ class KegiatanMitraModel extends Model
 
     protected $allowedFields    = [
         'mitra_id',
+        'jabatan',
         'kegiatan_id',
         'bulan_kegiatan',
         'bulan_pembayaran_honor',

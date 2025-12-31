@@ -1,56 +1,79 @@
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
-<div class="container-fluid">
+<div class="container-fluid py-4">
 
-    <div class="mb-4">
-        <h4>Tambah Survei</h4>
-        <small class="text-muted">
-            Data survei bersifat induk. Kegiatan ditambahkan setelah survei dibuat.
-        </small>
+    <div class="row align-items-center mb-4">
+        <div class="col">
+            <h4 class="fw-bold mb-0 text-dark">Tambah Survei</h4>
+            <p class="text-muted small mb-0">
+                Data survei bersifat induk. Kegiatan dapat ditambahkan setelah data induk tersimpan.
+            </p>
+        </div>
+        <div class="col-auto">
+            <a href="/survei" class="btn btn-outline-secondary px-4 border-0">
+                <i class="bi bi-arrow-left me-1"></i> Kembali ke Daftar
+            </a>
+        </div>
     </div>
 
-    <form action="/survei/store" method="post" class="card shadow-sm">
-        <?= csrf_field() ?>
+    <div class="row justify-content-start">
+        <div class="col-lg-8">
+            <form action="/survei/store" method="post" class="card border-0 shadow-sm">
+                <?= csrf_field() ?>
 
-        <div class="card-body">
-            <div class="row">
+                <div class="card-body p-4">
+                    <div class="row g-4">
 
-                <div class="col-md-4 mb-3">
-                    <label class="form-label">
-                        Kode Survei <span class="text-danger">*</span>
-                    </label>
-                    <input type="text"
-                        name="kode_survei"
-                        class="form-control"
-                        placeholder="Contoh: SUSENAS26"
-                        required>
+                        <div class="col-md-4">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">
+                                Kode Survei <span class="text-danger">*</span>
+                            </label>
+                            <input type="text"
+                                name="kode_survei"
+                                class="form-control bg-light border-0 py-2"
+                                placeholder="MISAL: SUSENAS26"
+                                style="text-transform: uppercase;"
+                                required>
+                        </div>
+
+                        <div class="col-md-8">
+                            <label class="form-label small fw-bold text-uppercase text-secondary">
+                                Nama Survei <span class="text-danger">*</span>
+                            </label>
+                            <input type="text"
+                                name="nama_survei"
+                                class="form-control bg-light border-0 py-2"
+                                placeholder="Survei Sosial Ekonomi Nasional Tahun 2026"
+                                required>
+                        </div>
+
+                    </div>
                 </div>
 
-                <div class="col-md-8 mb-3">
-                    <label class="form-label">
-                        Nama Survei <span class="text-danger">*</span>
-                    </label>
-                    <input type="text"
-                        name="nama_survei"
-                        class="form-control"
-                        placeholder="Survei Sosial Ekonomi Nasional (SUSENAS) Tahun 2026"
-                        required>
+                <div class="card-footer bg-white border-top-0 p-4 pt-0 text-end">
+                    <hr class="text-light mb-4">
+                    <button type="submit" class="btn btn-primary px-5 shadow-sm">
+                        <i class="bi bi-save me-2"></i> Simpan Data Survei
+                    </button>
                 </div>
-
-            </div>
+            </form>
         </div>
-
-        <div class="card-footer text-end">
-            <a href="/survei" class="btn btn-secondary">
-                <i class="bi bi-arrow-left"></i> Kembali
-            </a>
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-save"></i> Simpan Survei
-            </button>
-        </div>
-    </form>
+    </div>
 
 </div>
+
+<style>
+    /* Focus effects for the "clean" look */
+    .form-control:focus {
+        background-color: #fff !important;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+        border: 1px solid #0d6efd;
+    }
+
+    .form-label {
+        letter-spacing: 0.02em;
+    }
+</style>
 
 <?= $this->endSection() ?>
