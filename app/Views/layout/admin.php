@@ -1,14 +1,17 @@
+<?php
+
+use App\Helpers\UrlHelper; ?>
 <!doctype html>
 <html lang="id">
 
 <head>
     <meta charset="utf-8">
-    <title><?= $title ?? 'Admin Panel' ?></title>
+    <title><?= $title ?? 'Manajemen Honor Mitra' ?></title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="/assets/css/app-styles.css">
+    <link rel="stylesheet" href="<?= UrlHelper::asset('css/app-styles.css') ?>">
 </head>
 
 <body>
@@ -44,8 +47,8 @@
     <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Centralized Application Scripts -->
-    <script src="/assets/js/app-scripts.js"></script>
+    <!-- Centralized JavaScript -->
+    <script src="<?= UrlHelper::asset('js/app-scripts.js') ?>"></script>
 </body>
 
 </html>

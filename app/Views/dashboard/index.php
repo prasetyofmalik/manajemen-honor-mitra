@@ -1,3 +1,6 @@
+<?php
+
+use App\Helpers\UrlHelper; ?>
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
@@ -32,7 +35,7 @@
                     <button type="submit" class="btn btn-primary px-4 w-100 fw-medium">
                         <i class="bi bi-funnel me-1"></i> Filter
                     </button>
-                    <a href="/dashboard" class="btn btn-light border w-100 fw-medium text-muted">Reset</a>
+                    <a href="<?= UrlHelper::url('dashboard') ?>" class="btn btn-light border w-100 fw-medium text-muted">Reset</a>
                 </div>
             </form>
         </div>

@@ -1,3 +1,6 @@
+<?php
+
+use App\Helpers\UrlHelper; ?>
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
@@ -9,7 +12,7 @@
             <p class="text-muted small mb-0">Lengkapi formulir di bawah untuk menambahkan Mitra Kepka 2026 yang belum masuk</p>
         </div>
         <div class="col-auto">
-            <a href="/mitra" class="btn btn-outline-secondary px-4 border-0">
+            <a href="<?= UrlHelper::url('mitra') ?>" class="btn btn-outline-secondary px-4 border-0">
                 <i class="bi bi-arrow-left me-1"></i> Kembali ke Daftar
             </a>
         </div>
@@ -17,7 +20,7 @@
 
     <div class="row justify-content-start">
         <div class="col-lg-10">
-            <form action="/mitra/store" method="post" class="card border-0 shadow-sm">
+            <form action="<?= UrlHelper::url('mitra/store') ?>" method="post" class="card border-0 shadow-sm">
                 <?= csrf_field() ?>
 
                 <div class="card-body p-4">

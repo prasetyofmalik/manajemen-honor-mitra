@@ -1,3 +1,6 @@
+<?php
+
+use App\Helpers\UrlHelper; ?>
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
@@ -12,7 +15,7 @@
             <p class="text-muted small mb-0">Perbarui penugasan atau rincian pembayaran untuk mitra terpilih.</p>
         </div>
         <div class="col-auto">
-            <a href="/kegiatan-mitra" class="btn btn-outline-secondary px-4 border-0">
+            <a href="<?= UrlHelper::url('kegiatan-mitra') ?>" class="btn btn-outline-secondary px-4 border-0">
                 <i class="bi bi-arrow-left me-1"></i> Kembali
             </a>
         </div>
@@ -20,7 +23,7 @@
 
     <div class="row justify-content-start">
         <div class="col-lg-10">
-            <form action="/kegiatan-mitra/update/<?= $kegiatan_mitra['id'] ?>" method="post" class="card border-0 shadow-sm">
+            <form action="<?= UrlHelper::url('kegiatan-mitra/update/' . $kegiatan_mitra['id']) ?>" method="post" class="card border-0 shadow-sm">
                 <?= csrf_field() ?>
 
                 <div class="card-body p-4">

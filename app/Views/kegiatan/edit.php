@@ -1,3 +1,6 @@
+<?php
+
+use App\Helpers\UrlHelper; ?>
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
@@ -14,7 +17,7 @@
             </p>
         </div>
         <div class="col-auto">
-            <a href="/survei" class="btn btn-outline-secondary px-4 border-0">
+            <a href="<?= UrlHelper::url('survei') ?>" class="btn btn-outline-secondary px-4 border-0">
                 <i class="bi bi-arrow-left me-1"></i> Kembali
             </a>
         </div>
@@ -22,7 +25,7 @@
 
     <div class="row justify-content-start">
         <div class="col-lg-10">
-            <form action="/kegiatan/update/<?= $kegiatan['id'] ?>" method="post" class="card border-0 shadow-sm">
+            <form action="<?= UrlHelper::url('kegiatan/update/' . $kegiatan['id']) ?>" method="post" class="card border-0 shadow-sm">
                 <?= csrf_field() ?>
 
                 <input type="hidden" name="survei_id" value="<?= esc(old('survei_id', $survei['id'])) ?>">

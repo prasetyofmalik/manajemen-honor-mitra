@@ -1,3 +1,6 @@
+<?php
+
+use App\Helpers\UrlHelper; ?>
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
@@ -9,7 +12,7 @@
             <p class="text-muted small mb-0">Kelola daftar survei dan rincian kegiatan operasional</p>
         </div>
         <div class="col-auto">
-            <a href="/survei/create" class="btn btn-primary px-4 shadow-sm">
+            <a href="<?= UrlHelper::url('survei/create') ?>" class="btn btn-primary px-4 shadow-sm">
                 <i class="bi bi-plus-lg me-1"></i> Tambah Survei
             </a>
         </div>
@@ -62,10 +65,10 @@
                                             title="Lihat Detail">
                                             <i class="bi bi-chevron-down"></i>
                                         </button>
-                                        <a href="/survei/edit/<?= $s['id'] ?>" class="btn btn-sm btn-outline-warning" title="Edit">
+                                        <a href="<?= UrlHelper::url('survei/edit/' . $s['id']) ?>" class="btn btn-sm btn-outline-warning" title="Edit">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        <a href="/survei/delete/<?= $s['id'] ?>"
+                                        <a href="<?= UrlHelper::url('survei/delete/' . $s['id']) ?>"
                                             class="btn btn-sm btn-outline-danger"
                                             onclick="return confirm('Hapus survei ini?')" title="Hapus">
                                             <i class="bi bi-trash"></i>
@@ -84,7 +87,7 @@
                                                 </div>
                                                 <h6 class="mb-0 fw-bold text-dark">Daftar Kegiatan: <?= esc($s['nama_survei']) ?></h6>
                                             </div>
-                                            <a href="/kegiatan/create?survei_id=<?= $s['id'] ?>" class="btn btn-sm btn-success px-3 rounded-pill shadow-sm">
+                                            <a href="<?= UrlHelper::url('kegiatan/create?survei_id=' . $s['id']) ?>" class="btn btn-sm btn-success px-3 rounded-pill shadow-sm">
                                                 <i class="bi bi-plus-circle me-1"></i> Tambah Kegiatan
                                             </a>
                                         </div>
@@ -126,10 +129,10 @@
                                                                     </span>
                                                                 </td>
                                                                 <td class="text-center">
-                                                                    <a href="/kegiatan/edit/<?= $k['id'] ?>" class="btn btn-link btn-sm text-warning p-0 mx-1">
+                                                                    <a href="<?= UrlHelper::url('kegiatan/edit/' . $k['id']) ?>" class="btn btn-link btn-sm text-warning p-0 mx-1">
                                                                         <i class="bi bi-pencil-square fs-6"></i>
                                                                     </a>
-                                                                    <a href="/kegiatan/delete/<?= $k['id'] ?>" class="btn btn-link btn-sm text-danger p-0 mx-1" onclick="return confirm('Hapus kegiatan ini?')">
+                                                                    <a href="<?= UrlHelper::url('kegiatan/delete/' . $k['id']) ?>" class="btn btn-link btn-sm text-danger p-0 mx-1" onclick="return confirm('Hapus kegiatan ini?')">
                                                                         <i class="bi bi-trash fs-6"></i>
                                                                     </a>
                                                                 </td>

@@ -1,3 +1,6 @@
+<?php
+
+use App\Helpers\UrlHelper; ?>
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
@@ -9,7 +12,7 @@
             <p class="text-muted small mb-0">Mitra Kepka hasil Rekrutmen Mitra Statistik BPS 2026</p>
         </div>
         <div class="col-auto">
-            <a href="/mitra/create" class="btn btn-primary px-4 shadow-sm">
+            <a href="<?= UrlHelper::url('mitra/create') ?>" class="btn btn-primary px-4 shadow-sm">
                 <i class="bi bi-plus-lg me-1"></i> Tambah Mitra
             </a>
         </div>
@@ -74,10 +77,10 @@
                                 </td>
                                 <td class="text-end pe-4">
                                     <div class="btn-group shadow-sm" role="group">
-                                        <a href="/mitra/edit/<?= $m['id'] ?>" class="btn btn-sm btn-outline-warning" title="Edit">
+                                        <a href="<?= UrlHelper::url('mitra/edit/' . $m['id']) ?>" class="btn btn-sm btn-outline-warning" title="Edit">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        <a href="/mitra/delete/<?= $m['id'] ?>"
+                                        <a href="<?= UrlHelper::url('mitra/delete/' . $m['id']) ?>"
                                             class="btn btn-sm btn-outline-danger"
                                             onclick="return confirm('Yakin hapus data mitra ini?')" title="Hapus">
                                             <i class="bi bi-trash"></i>

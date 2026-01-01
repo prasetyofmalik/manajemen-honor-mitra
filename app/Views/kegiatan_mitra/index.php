@@ -1,3 +1,6 @@
+<?php
+
+use App\Helpers\UrlHelper; ?>
 <?= $this->extend('layout/admin') ?>
 <?= $this->section('content') ?>
 
@@ -9,7 +12,7 @@
             <p class="text-muted small mb-0">Monitoring honor dan distribusi pulsa untuk setiap kegiatan mitra</p>
         </div>
         <div class="col-auto">
-            <a href="/kegiatan-mitra/create" class="btn btn-primary px-4 shadow-sm">
+            <a href="<?= UrlHelper::url('kegiatan-mitra/create') ?>" class="btn btn-primary px-4 shadow-sm">
                 <i class="bi bi-plus-lg me-1"></i> Input Kegiatan Mitra
             </a>
         </div>
@@ -93,18 +96,18 @@
                                         Pulsa: <span class="text-dark fw-medium"><?= $formatMonth($k['bulan_pembayaran_pulsa']) ?></span>
                                     </div>
                                 </td>
-                                <td class="text-end fw-bold text-dark">
+                                <td class="text-end fw-bold text-success">
                                     <?= number_format($k['honor'], 0, ',', '.') ?>
                                 </td>
-                                <td class="text-end fw-bold text-success">
+                                <td class="text-end fw-bold text-info">
                                     <?= number_format($k['pulsa'], 0, ',', '.') ?>
                                 </td>
                                 <td class="text-end pe-4">
                                     <div class="btn-group shadow-sm" role="group">
-                                        <a href="/kegiatan-mitra/edit/<?= $k['id'] ?>" class="btn btn-sm btn-outline-warning" title="Edit">
+                                        <a href="<?= UrlHelper::url('kegiatan-mitra/edit/' . $k['id']) ?>" class="btn btn-sm btn-outline-warning" title="Edit">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        <a href="/kegiatan-mitra/delete/<?= $k['id'] ?>"
+                                        <a href="<?= UrlHelper::url('kegiatan-mitra/delete/' . $k['id']) ?>"
                                             class="btn btn-sm btn-outline-danger"
                                             onclick="return confirm('Yakin hapus data kegiatan mitra ini?')" title="Hapus">
                                             <i class="bi bi-trash"></i>
