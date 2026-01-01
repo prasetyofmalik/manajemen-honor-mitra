@@ -90,7 +90,7 @@
         return;
       }
 
-      fetch(`/kegiatan/by-survei/${surveiId}`)
+      fetch(`${window.APP_BASE_URL}kegiatan/by-survei/${surveiId}`)
         .then((response) => response.json())
         .then((data) => {
           $kegiatanSelect.html("");
