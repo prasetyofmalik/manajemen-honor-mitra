@@ -127,62 +127,8 @@
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-<script>
-    $(document).ready(function() {
-        // Initialize Searchable Select2
-        $('.select2-search').select2({
-            theme: 'bootstrap-5',
-            width: '100%'
-        });
 
-        // Activity Filter Logic
-        $('#surveiSelect').on('change', function() {
-            const surveiId = $(this).val();
-            const $kegiatanSelect = $('#kegiatanSelect');
 
-            $kegiatanSelect.html('<option value="">Memuat kegiatan...</option>').prop('disabled', true);
-
-            if (!surveiId) {
-                $kegiatanSelect.html('<option value="">-- Pilih survei terlebih dahulu --</option>');
-                return;
-            }
-
-            fetch(`/kegiatan/by-survei/${surveiId}`)
-                .then(response => response.json())
-                .then(data => {
-                    $kegiatanSelect.html('');
-                    if (data.length === 0) {
-                        $kegiatanSelect.html('<option value="">Belum ada kegiatan untuk survei ini</option>');
-                    } else {
-                        $kegiatanSelect.append('<option value="">-- Pilih Kegiatan --</option>');
-                        data.forEach(kegiatan => {
-                            $kegiatanSelect.append(`<option value="${kegiatan.id}">${kegiatan.nama_kegiatan}</option>`);
-                        });
-                        $kegiatanSelect.prop('disabled', false);
-                    }
-                })
-                .catch(() => {
-                    $kegiatanSelect.html('<option value="">Gagal memuat kegiatan</option>');
-                });
-        });
-    });
-</script>
-
-<style>
-    .select2-container--bootstrap-5 .select2-selection {
-        background-color: #f8f9fa !important;
-        border: none !important;
-        padding: 0.4rem;
-    }
-
-    .form-control:focus {
-        background-color: #fff !important;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
-        border: 1px solid #0d6efd;
-    }
-</style>
 
 <?= $this->endSection() ?>

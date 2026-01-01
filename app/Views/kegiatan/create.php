@@ -121,18 +121,6 @@
 
 </div>
 
-<style>
-    /* Maintains the clean dashboard theme */
-    .form-control:focus,
-    .form-select:focus {
-        background-color: #fff !important;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
-        border: 1px solid #0d6efd;
-    }
 
-    .input-group-text {
-        font-size: 0.85rem;
-    }
-</style>
 
 <?= $this->endSection() ?>

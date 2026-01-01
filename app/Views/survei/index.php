@@ -150,33 +150,6 @@
     </div>
 </div>
 
-<style>
-    /* Consistent Styling with Mitra Index */
-    .table thead th {
-        font-size: 0.7rem;
-        letter-spacing: 0.05em;
-        border-top: none;
-        padding-top: 1rem;
-        padding-bottom: 1rem;
-    }
 
-    .btn-group .btn {
-        border-radius: 6px;
-        margin: 0 2px;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: rgba(13, 110, 253, 0.02);
-    }
-
-    .shadow-inner {
-        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .card-header .btn-success {
-        font-size: 0.75rem;
-        font-weight: 500;
-    }
-</style>
 
 <?= $this->endSection() ?>

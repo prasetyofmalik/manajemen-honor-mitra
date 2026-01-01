@@ -93,22 +93,6 @@
     </div>
 </div>
 
-<style>
-    /* Styling consistency with Survei view */
-    .table thead th {
-        font-size: 0.7rem;
-        letter-spacing: 0.05em;
-        border-top: none;
-    }
 
-    .btn-group .btn {
-        border-radius: 6px;
-        margin: 0 2px;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: rgba(13, 110, 253, 0.02);
-    }
-</style>
 
 <?= $this->endSection() ?>

@@ -120,18 +120,6 @@
 
 </div>
 
-<style>
-    /* Consistent focus states across the app */
-    .form-control:focus,
-    .form-select:focus {
-        background-color: #fff !important;
-        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.15);
-        border: 1px solid #ffc107;
-    }
 
-    .input-group-text {
-        font-size: 0.85rem;
-    }
-</style>
 
 <?= $this->endSection() ?>

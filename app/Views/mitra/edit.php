@@ -159,53 +159,8 @@
     </div>
 </div>
 
-<script>
-    const phoneInput = document.getElementById('phone_input');
 
-    const formatPhone = (val) => {
-        let x = val.replace(/\D/g, '');
-        if (x.startsWith('62')) {} else if (x.startsWith('0')) {
-            x = '62' + x.substring(1);
-        } else {
-            x = '62' + x;
-        }
 
-        let formatted = '+62 ';
-        if (x.length > 2) {
-            formatted += x.substring(2, 5);
-        }
-        if (x.length > 5) {
-            formatted += '-' + x.substring(5, 9);
-        }
-        if (x.length > 9) {
-            formatted += '-' + x.substring(9, 14);
-        }
-        return formatted;
-    };
 
-    // Initial format on load
-    window.addEventListener('load', () => {
-        if (phoneInput.value) phoneInput.value = formatPhone(phoneInput.value);
-    });
-
-    phoneInput.addEventListener('input', function(e) {
-        e.target.value = formatPhone(e.target.value);
-    });
-
-    phoneInput.addEventListener('keydown', function(e) {
-        if (e.target.selectionStart <= 4 && (e.keyCode === 8 || e.keyCode === 46)) {
-            e.preventDefault();
-        }
-    });
-</script>
-
-<style>
-    .form-control:focus,
-    .form-select:focus {
-        background-color: #fff !important;
-        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.15);
-        border: 1px solid #ffc107;
-    }
-</style>
 
 <?= $this->endSection() ?>

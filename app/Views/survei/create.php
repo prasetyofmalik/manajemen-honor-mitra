@@ -63,17 +63,6 @@
 
 </div>
 
-<style>
-    /* Focus effects for the "clean" look */
-    .form-control:focus {
-        background-color: #fff !important;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
-        border: 1px solid #0d6efd;
-    }
 
-    .form-label {
-        letter-spacing: 0.02em;
-    }
-</style>
 
 <?= $this->endSection() ?>

@@ -157,60 +157,8 @@
 
 </div>
 
-<script>
-    document.getElementById('phone_input').addEventListener('input', function(e) {
-        // 1. Get raw digits only
-        let x = e.target.value.replace(/\D/g, '');
 
-        // 2. Handle prefix logic
-        if (x.startsWith('62')) {
-            // already has 62
-        } else if (x.startsWith('0')) {
-            x = '62' + x.substring(1); // Replace leading 0 with 62
-        } else {
-            x = '62' + x; // Prepend 62
-        }
 
-        // 3. Format strictly based on digit positions
-        let formatted = '+62 ';
 
-        // Segment 1: digits 3 to 5 (e.g., 812)
-        if (x.length > 2) {
-            formatted += x.substring(2, 5);
-        }
-        // Segment 2: digits 6 to 9 (e.g., 3456)
-        if (x.length > 5) {
-            formatted += '-' + x.substring(5, 9);
-        }
-        // Segment 3: digits 10 up to 14 (max 5 digits, e.g., 78901)
-        if (x.length > 9) {
-            formatted += '-' + x.substring(9, 14);
-        }
-
-        e.target.value = formatted;
-    });
-
-    // Cursor protection: Prevents deleting the '+62 ' prefix
-    document.getElementById('phone_input').addEventListener('keydown', function(e) {
-        const start = e.target.selectionStart;
-        // 8 is Backspace, 46 is Delete
-        if (start <= 4 && (e.keyCode === 8 || e.keyCode === 46)) {
-            e.preventDefault();
-        }
-    });
-</script>
-
-<style>
-    .form-control:focus,
-    .form-select:focus {
-        background-color: #fff !important;
-        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
-        border: 1px solid #0d6efd;
-    }
-
-    .form-label {
-        letter-spacing: 0.02em;
-    }
-</style>
 
 <?= $this->endSection() ?>

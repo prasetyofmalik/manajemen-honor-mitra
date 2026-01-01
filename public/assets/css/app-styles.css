@@ -1,0 +1,89 @@
+/* Centralized application styles for views
+   Consolidates inline styles from survei, mitra, kegiatan, kegiatan_mitra, dashboard */
+
+/* Table & badges */
+.table thead th {
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  border-top: none;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(13, 110, 253, 0.02);
+}
+
+.btn-group .btn {
+  border-radius: 6px;
+  margin: 0 2px;
+}
+
+.badge {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border-radius: 4px;
+  padding: 0.35em 0.65em;
+}
+
+.shadow-inner {
+  box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.card-header .btn-success {
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+/* Form controls focus */
+.form-control:focus,
+.form-select:focus {
+  background-color: #fff !important;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.12);
+  border: 1px solid #0d6efd;
+}
+
+.form-label {
+  letter-spacing: 0.02em;
+}
+
+.input-group-text {
+  font-size: 0.85rem;
+}
+
+/* Select2 specific visual adjustments */
+.select2-container--bootstrap-5 .select2-selection {
+  background-color: #f8f9fa !important;
+  border: none !important;
+  padding: 0.4rem;
+}
+
+.select2-container--bootstrap-5 .select2-selection__rendered {
+  line-height: 1.6;
+}
+
+/* Dashboard-specific utilities */
+.table tbody tr.table-danger-light {
+  background-color: #fff5f5 !important;
+}
+.table tbody tr.table-danger-light td {
+  background-color: inherit !important;
+  border-bottom: 1px solid #fecaca !important;
+}
+.table-hover tbody tr.table-danger-light:hover {
+  background-color: #fee2e2 !important;
+}
+.table-danger-light .text-danger {
+  color: #dc3545 !important;
+}
+
+.sticky-top { top: -1px; z-index: 1020; }
+.sticky-bottom { bottom: 0; z-index: 1020; }
+
+/* Small utilities used across views */
+.text-truncate-250 { max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Keep small global overrides separate for easy edits */
+:root {
+  --app-focus-shadow: 0 0 0 0.25rem rgba(13,110,253,0.12);
+}

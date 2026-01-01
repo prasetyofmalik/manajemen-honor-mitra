@@ -63,18 +63,6 @@
 
 </div>
 
-<style>
-    /* Consistent focus states from Create view */
-    .form-control:focus {
-        background-color: #fff !important;
-        box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.15);
-        /* Yellow glow for warning button theme */
-        border: 1px solid #ffc107;
-    }
 
-    .form-label {
-        letter-spacing: 0.02em;
-    }
-</style>
 
 <?= $this->endSection() ?>
